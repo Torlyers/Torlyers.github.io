@@ -7,18 +7,15 @@ author:       "Hux"
 header-img:   "img/in-post/post-eleme-pwa/eleme-at-io.jpg"
 header-mask:  0.3
 catalog:      true
-multilingual: true
-tags:
-    - 前端开发
-    - JavaScript
-    - PWA
+multilingual: false
+
 ---
 
 <!-- Chinese Version -->
-<div class="zh post-container">
+<!-- <div class="zh post-container">
     {% capture about_zh %}{% include posts/2017-07-12-upgrading-eleme-to-pwa/zh.md %}{% endcapture %}
     {{ about_zh | markdownify }}
-</div>
+</div> -->
 
 <!-- English Version -->
 <div class="en post-container">
