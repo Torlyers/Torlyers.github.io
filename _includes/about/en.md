@@ -7,10 +7,9 @@ Greetings,
 I am Zhitao Zhao, a gameplay engineer & game designer.
 <!-- I previously worked as Web Front-End Engineer at [Alibaba Trip](https://www.alitrip.com/); Web Front-End Infrastructure Team Lead at [Wepiao.com](https://www.crunchbase.com/organization/wepiao#/entity); And [Invited Consultant on PWA]((https://medium.com/elemefe/upgrading-ele-me-to-progressive-web-app-2a446832e509)) at [Ele.me](https://github.com/elemefe/). -->
 
-I studied Digital Media Technology and graduated from [Zhejiang University](https://en.wikipedia.org/wiki/Zhejiang_University) by 2017.
-I am now studying in Entertainment Arts & Engineering at [Master Game Studio](https://eae.utah.edu/), University of Utah from 2017. 
+I am an engineer with a background in production, level design and art. Always wanting to design and develop good games, I spent most of my times in I related area. I studied Digital Media Technology and graduated from [Zhejiang University](https://en.wikipedia.org/wiki/Zhejiang_University) by 2017.I am now studying in Entertainment Arts & Engineering at [Master Game Studio](https://eae.utah.edu/), University of Utah from 2017.
+Now I am concentrate on developing a game engine, which I think is a challenging stuff. 
 
-My [resume]().
 
 
 <!-- ##### Talks
