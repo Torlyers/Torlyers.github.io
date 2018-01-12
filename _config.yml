@@ -67,9 +67,8 @@ ga_domain: huangxuan.me
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Gameplay engineer\n
-                            EAE:MGS\n
-                            The University of Utah"
+sidebar-about-description: "Torlyers.0112@gmail.com\n
+                            801-897-0606"
 sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
