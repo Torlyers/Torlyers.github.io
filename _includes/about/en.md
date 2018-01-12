@@ -4,11 +4,14 @@
 
 
 Greetings,
-I am Zhitao Zhao, a gameplay engineer & game designer.
+I am Zhitao Zhao, a game engineer & game designer.
 <!-- I previously worked as Web Front-End Engineer at [Alibaba Trip](https://www.alitrip.com/); Web Front-End Infrastructure Team Lead at [Wepiao.com](https://www.crunchbase.com/organization/wepiao#/entity); And [Invited Consultant on PWA]((https://medium.com/elemefe/upgrading-ele-me-to-progressive-web-app-2a446832e509)) at [Ele.me](https://github.com/elemefe/). -->
 
-I am an engineer with a background in production, level design and art. Always wanting to design and develop good games, I spent most of my times in I related area. I studied Digital Media Technology and graduated from [Zhejiang University](https://en.wikipedia.org/wiki/Zhejiang_University) by 2017.I am now studying in Entertainment Arts & Engineering at [Master Game Studio](https://eae.utah.edu/), University of Utah from 2017.
-Now I am concentrate on developing a game engine, which I think is a challenging stuff. 
+With a deep interest in games and programming, I chose to attend [Zhejiang University](https://en.wikipedia.org/wiki/Zhejiang_University) for their outstanding game development program, Digital Media Technology. These four years have given me a great foundation for game development, and I'm excited to expand my knowledge in the field. I am now studying in Entertainment Arts & Engineering at [Master Game Studio](https://eae.utah.edu/), the University of Utah from 2017. As a student in engineering track, I am programming gameplay logic for my teams with C++ and C#.
+
+I am an engineer with a background in production, level design, and art design. I used to work as a production & level design intern in [NetEase](https://en.wikipedia.org/wiki/NetEase). At the same time, I learned Unity and developed several game projects. Not only I implemented the gameplay logic but also built 3D models and design levels. I believe the experience in these areas help me understand the game development pipeline better.
+
+Currently, I am concentrating on Unreal and 3D graphics, trying to develop a game engine with C++ and DirectX.
 
 
 
