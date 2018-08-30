@@ -27,5 +27,4 @@ Property sheet make it so
 
 ## Appendix
 
-[Click to download the Game]
-(/assets/Lighthouse-before.png)
+[Click to download the Game](/assets/A01_Zhitao.zip)
