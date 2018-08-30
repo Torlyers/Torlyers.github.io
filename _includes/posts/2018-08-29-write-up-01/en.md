@@ -28,7 +28,7 @@ float rValue = sin( g_elapsedSecondCount_simulationTime );
 float gValue = cos( g_elapsedSecondCount_simulationTime );
 float bValue = sin( g_elapsedSecondCount_simulationTime );
 ```
-[](/img/in-post/write-up-01/game.jpg)
+![](/img/in-post/write-up-01/game.jpg)
 
 ---
 
