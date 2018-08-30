@@ -2,36 +2,30 @@
 
 
 ## Summary
+Assignment 01 is about how to use visual studio to manage a solution of a large size. Before doing this, I have some experience on VS project settings, however, I didn't really understand the process. Through this assignment, I understand how to handle refenences and dependencies between projects, how to use property sheets and macros to handle cross-platform problems. Another important thing is that I start to know the implementation of configration after modify `.vcxproj` and `.filters` files.
 
-Meanwhile, we still leverage [Vue.js](http://vuejs.org/) to boost our productivity. You may have heard of Vue as a rival of React or Angular, but Vue's lightweight and performance make it also a perfect replacement of traditional "jQuery/Zepto + template engine" stack when engineering a Multi-page app. We built every component as [Single File Components](http://vuejs.org/v2/guide/single-file-components.html) so they can be easily shareable between pages. The declarative-ness plus reactivity Vue offered help us manage both code and data flow. Oh, did I mention that [Vue is progressive](https://www.youtube.com/watch?v=pBBSp_iIiVM)? So things like Vuex or Vue-Router can be incrementally adopted if our site's complexity scales up, like...migrating to SPA again? (Who knows...)
+
+## References & Dependency
+The thing I learned from creating Graphics project and finally successfully building it is that **If you don't realize it, you will make mistakes.**
+
+I failed three times here because missed something. I think the key here is that a solution could include many projects and each project may depends on each other. To make the solution work, projects should be built in the correct order. Visual studio will build projects in order after manually setting project references. (But there is a time I need to set project dependency).
+
+About the difference between **Reference** and **Dependency**, I think the former one is more about link, in other words, a project need to use codes in other projects. And the latter one is more on project layer. Some libraries need to be built first, or other projects cannot be built.
+
+## Cross-Platform  
+
+## Project Property Sheet
+Setting project propeties is always a annoying thing before you really start to code. A good solution should be robust in different platforms and to do this, you need to add some macros. And you want to make your file structure clear, make input, output, and projects of differents seperate. VS default configration is not a good choice so that you need to modify the properties so many times.
+Property sheet make it so
+
+## Finally My Game
  
-In 2017, PWA seems to be all the rage, so we embark on exploring how far can our Vue-based Multi-page PWAs actually go.
 
-## Static Library, References & Dependency
-
-I love [PRPL pattern][1] because it gives you a high-level abstraction of how to structure and design your own PWA systems. Since we are not rebuild everything from scratch, we decided taking implementing PRPL as our migration goal:
-
-![](/img/in-post/post-eleme-pwa/Lighthouse-before.png)
-
-**In [Lighthouse](https://developers.google.com/web/tools/lighthouse/) simulation (3G & 5x Slower CPU), we made Time-To-Interactive around 2 seconds,** and this was benchmarked on our HTTP1 test server. 
-
-The first visit is fast. The repeat visit with Service Worker is even faster. You can check out this video to see the huge difference between with or without Service Worker:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mbi_WnunJa8" frameborder="0" allowfullscreen></iframe>
-
-## Platform & Project Property Sheet
-
-## Project Files
-
-## Shader Cross OpenGL & DirectX3D
-
-This article is much longer than I could imagine. I am really appreciated if you could get here. So what can we learn from it?
 
 
 ---
 
-## Appendix. Architecture Diagram
+## Appendix
 
-![](/img/in-post/post-eleme-pwa/Architecture.png)
-
-[1]: https://developers.google.com/web/fundamentals/performance/prpl-pattern/
+[Click to download the Game]
+(/assets/Lighthouse-before.png)
