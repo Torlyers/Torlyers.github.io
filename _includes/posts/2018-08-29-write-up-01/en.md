@@ -1,6 +1,6 @@
 > Solution Configration & Customized Fragment Shader
 
-
+[Click to download the Game](/assets/A01_Zhitao.zip)
 ## Summary
 Assignment 01 is about how to use visual studio to manage a solution of a large size. Before doing this, I have some experience on VS project settings, however, I didn't really understand the process. Through this assignment, I understand how to handle refenences and dependencies between projects, how to use property sheets and macros to handle cross-platform problems. Another important thing is that I start to know the implementation of configration after modify `.vcxproj` and `.filters` files.
 
