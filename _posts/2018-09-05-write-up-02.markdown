@@ -1,7 +1,7 @@
 ---
 layout:       post
 title:        "[EAE 6320] WRITE-UP 02"
-subtitle:     "Render Pipeline & GPU Debugging"
+subtitle:     "Platform Independent Interfaces & GPU Debugging"
 date:         2018-09-05 12:00:00
 author:       "Zhitao"
 header-img:   "img/in-post/write-up-02/bg.jpg"
