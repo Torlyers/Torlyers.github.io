@@ -12,7 +12,7 @@ In this assignment, I have a basic understanding about the rendering pipeline of
 Mesh class is for models. I add a `Vertex` struct and a vector to save vertices. Now a vertex only contains position information. Since we will read `.obj` or `.fbx` files in the future, the vertex should contains more data like texture information and the mesh should contain indices.
 Here are the interfaces in `cMesh.h` file, and they were implemented in two different `.cpp` files.
 
-#### Interfaces
+***Interfaces***
 ```c++
 cResult Initialize();
 cResult CleanUp();
@@ -25,7 +25,8 @@ Effect class is for shaders. I'm not sure if "Effect" is the best name but I can
 Effect(std::string i_VertexShaderPath, std::string i_FragmentShaderPath);
 ```
 Same as the Mesh class, interfaces were implemented in two `.cpp` files.
-#### Interfaces
+
+***Interfaces***
 ```c++
 cResult Initialize();
 cResult CleanUp();
