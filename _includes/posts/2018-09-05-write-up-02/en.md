@@ -1,6 +1,11 @@
 > Platform Independent Interfaces & GPU Debugging
 
+
+## The game
 [Click to download the Game](/assets/A02_Zhitao.zip)
+### Controls
+Press `SPACE` key to slow down to 0.5 times, and release it to recover.
+
 ## Summary
 
 In this assignment, I have a basic understanding about the rendering pipeline of both Direct3D and OpenGL. What we want to do is to develop a platform-independent render library. And we want to draw different meshes with different shaders. So the first step is add platform-independent mesh class and effect class and write good interfaces, then implement in both platforms.
