@@ -35,6 +35,7 @@ void SwapBuffer();
 cResult CleanUp();
 ```
 #### Background Color
+Every frame, the color buffer will be cleared. And we can determine the color of the background. Both OpenGL and Direct3D accept 4 `float` parameters that representing RGBA color channels so that we can change these numbers to change the background color. If we can connect these numbers to system time, we can make an animate.
 
 ```c++
 PlatformHelper::ClearColorBuffer(cos(time), cos(time), sin(time));
@@ -45,29 +46,42 @@ PlatformHelper::ClearColorBuffer(cos(time), cos(time), sin(time));
 #### Effect
 
 ***Initialization***
+The initialization of effect is pretty simple, the data we use here is vertex shader and fragment shader. So, we just need to use shader files' names to initialize an effect object.
 
 ```c++
 effect.Initialize("data/Shaders/Vertex/standard.shader", "data/Shaders/Fragment/test_fs.shader");
 ```
 
 ***Memory***
+In OpenGL, an effect object is 16 bytes, which includes 
+In Direct3D, an effect object is 40 bytes, which indludes
+***OpenGL***
 ![](/img/in-post/write-up-03/GLEffect.JPG)
+***Direct3D***
 ![](/img/in-post/write-up-03/D3DEffect.JPG)
 
 #### Mesh
 
 ***Indice***
+To save both time and space, we use indices to present tertices that we need to render, which requires us to add another buffer and handler (or pointer). An important thing here is winding direction. To make sure same data works on both platforms, when we use the data in one platform, we need to swap the value of the second vertex and the third one in a triangle in the other platform.
+```c++
+swap(i_indiceData[i + 1], i_indiceData[i + 2]);
+```  
 
 ***Initialization***
+To initialize a mesh object, we just need to pass vertices buffer and indices buffer to it. 
 ```c++
 mesh.Initialize(vertices, indices);
 ```
 
 ***Memory***
-![](/img/in-post/write-up-03/GLMesh.JPG)
-![](/img/in-post/write-up-03/D3DMesh.JPG)
+In OpenGL, an effect object is 16 bytes, which includes 
+In Direct3D, an effect object is 40 bytes, which indludes
 
-## Discussion
+***OpenGL***
+![](/img/in-post/write-up-03/GLMesh.JPG)
+***Direct3D***
+![](/img/in-post/write-up-03/D3DMesh.JPG)
 
 ## Traps and Tips
 * Strongly recommend comparing tool in visual codes. Save your eyes, save your time!
