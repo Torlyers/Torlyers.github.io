@@ -6,8 +6,8 @@
 Press `SPACE` key to slow down to 0.5 times, and release it to recover.
 
 ## Summary
-This assignment is to make the graphic library more platform-independent. Now we only have one `Graphics.cpp` file, and all platform-specific contents were moved to another place. In this case, if we want to modify the render process, we don't need to modify two different files.
-Besides, hard-code mesh data and effect data are removed. Now both `Mesh` and `Effect` are data driven, and we can bind different shaders to differnt meshes, which is flexible enough.
+This assignment is to make the graphics library more platform-independent. Now we only have one `Graphics.cpp` file, and all platform-specific contents were moved to another place. In this case, if we want to modify the rendering process, we don't need to modify two different files.
+Besides, hard-code mesh data and effect data are removed. Now both `Mesh` and `Effect` are data-driven, and we can bind different shaders to different meshes, which is flexible enough.
 
 
 ## Requirements
@@ -17,7 +17,7 @@ Besides, hard-code mesh data and effect data are removed. Now both `Mesh` and `E
 ![](/img/in-post/write-up-03/running.gif)
 
 #### Platform-Independent Graphics.cpp
-The key to finish the move is to find the differences between `Graphics.gl.cpp` and `Graphics.d3d.cpp`. Here are the differences. 
+The key to finish this part is to find the differences between `Graphics.gl.cpp` and `Graphics.d3d.cpp`. Here are the differences. 
 
 * In Direct3D, we need to init render target view and depth/stencil view, which doesn't exist in OpenGL.
 * In render process, the interface of clearing color buffer is different.
@@ -25,7 +25,7 @@ The key to finish the move is to find the differences between `Graphics.gl.cpp` 
 * Swapping buffer is different.
 * And Direct3D views should be released in while cleaning up.
 
-What I did was to move these codes into a differnt namespace called `PlatformHelper`, packing them by interfaces and call these interfaces. The implementations are platform-specific, but they are not in `Graphics.cpp` any more. Here are the interfaces.
+What I did was to move these codes into a different namespace called `PlatformHelper`, packing them by interfaces and call these interfaces. The implementations are platform-specific, but they are not in `Graphics.cpp` any more. Here are the interfaces.
 
 ```c++
 cResult Initialize(const sInitializationParameters& i_initializationParameters);
@@ -35,7 +35,7 @@ void SwapBuffer();
 cResult CleanUp();
 ```
 #### Background Color
-Every frame, the color buffer will be cleared. And we can determine the color of the background. Both OpenGL and Direct3D accept 4 `float` parameters that representing RGBA color channels so that we can change these numbers to change the background color. If we can connect these numbers to system time, we can make an animate.
+Every frame, the color buffer will be cleared. And we can determine the color of the background. Both OpenGL and Direct3D accept 4 `float` parameters that representing RGBA color channels so that we can change these numbers to change the background color. If we can connect these numbers to system time, we can make an animation.
 
 ```c++
 PlatformHelper::ClearColorBuffer(cos(time), cos(time), sin(time));
