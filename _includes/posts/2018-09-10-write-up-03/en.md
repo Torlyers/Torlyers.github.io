@@ -46,6 +46,7 @@ PlatformHelper::ClearColorBuffer(cos(time), cos(time), sin(time));
 #### Effect
 
 ***Initialization***
+
 The initialization of effect is pretty simple, the data we use here is vertex shader and fragment shader. So, we just need to use shader files' names to initialize an effect object.
 
 ```c++
@@ -53,8 +54,10 @@ effect.Initialize("data/Shaders/Vertex/standard.shader", "data/Shaders/Fragment/
 ```
 
 ***Memory***
-In OpenGL, an effect object is 16 bytes, which includes 
-In Direct3D, an effect object is 40 bytes, which indludes
+
+In OpenGL, an effect object is 16 bytes, which includes 2 shader handles, 1 `Gluint`, 1 `renderState` which only contains a `uint8_t`, and alignment.
+In Direct3D, an effect object is 40 bytes, which indludes 2 shader handles, 1 `renderState` with 3 more pointers, and alignment.
+
 ***OpenGL***
 ![](/img/in-post/write-up-03/GLEffect.JPG)
 ***Direct3D***
@@ -63,20 +66,23 @@ In Direct3D, an effect object is 40 bytes, which indludes
 #### Mesh
 
 ***Indice***
+
 To save both time and space, we use indices to present tertices that we need to render, which requires us to add another buffer and handler (or pointer). An important thing here is winding direction. To make sure same data works on both platforms, when we use the data in one platform, we need to swap the value of the second vertex and the third one in a triangle in the other platform.
 ```c++
 swap(i_indiceData[i + 1], i_indiceData[i + 2]);
 ```  
 
 ***Initialization***
+
 To initialize a mesh object, we just need to pass vertices buffer and indices buffer to it. 
 ```c++
 mesh.Initialize(vertices, indices);
 ```
 
 ***Memory***
-In OpenGL, an effect object is 16 bytes, which includes 
-In Direct3D, an effect object is 40 bytes, which indludes
+
+In OpenGL, a mesh object is 16 bytes, which includes 3 `Gluint`, 1 `uint16_t` and alignment.
+In Direct3D, a mesh object is 32 bytes, which indludes 3 pointers, 1 `uint16_t` and alignment.
 
 ***OpenGL***
 ![](/img/in-post/write-up-03/GLMesh.JPG)
