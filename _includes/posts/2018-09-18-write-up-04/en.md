@@ -57,6 +57,7 @@ In Direct3D, the reference count varable can be put into the empty alignment spa
 * Need to be very careful to think about where to use `IncrementRefenenceCount()` and `DecrementRefenenceCount()`.
 
 * If don't use `std::vector` to store data, remember to initialize all the pointer while manully allocate memory for the struct includes mesh and effect (and mesh and effect are also pointers).
+
 ---
 
 ## Appendix
