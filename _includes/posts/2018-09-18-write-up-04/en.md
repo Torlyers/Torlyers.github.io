@@ -4,7 +4,9 @@
 [Click to download the Game](/assets/A04_Zhitao.zip)
 #### Controls
 Press `SPACE` key to slow down to 0.5 times, and release it to recover.
+
 Press `Left` key to hide an object.
+
 Press `Right` key to change the effect of the other object.
 
 ## Summary
@@ -53,6 +55,7 @@ In Direct3D, the reference count varable can be put into the empty alignment spa
 
 ## Traps and Tips
 * Need to be very careful to think about where to use `IncrementRefenenceCount()` and `DecrementRefenenceCount()`.
+
 * If don't use `std::vector` to store data, remember to initialize all the pointer while manully allocate memory for the struct includes mesh and effect (and mesh and effect are also pointers).
 ---
 
