@@ -1,0 +1,24 @@
+---
+layout:       post
+title:        "[EAE 6320] WRITE-UP 05"
+subtitle:     "Movement & Camera"
+date:         2018-09-24 12:00:00
+author:       "Zhitao"
+header-img:   "img/in-post/write-up-05/bg.jpg"
+header-mask:  0.3
+catalog:      true
+multilingual: false
+
+---
+
+<!-- Chinese Version -->
+<!-- <div class="zh post-container">
+    {% capture about_zh %}{% include posts/2018-08-29-write-up-01/zh.md %}{% endcapture %}
+    {{ about_zh | markdownify }}
+</div> -->
+
+<!-- English Version -->
+<div class="en post-container">
+    {% capture about_en %}{% include posts/2018-09-24-write-up-05/en.md %}{% endcapture %}
+    {{ about_en | markdownify }}
+</div>
