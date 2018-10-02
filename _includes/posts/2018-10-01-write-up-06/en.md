@@ -12,7 +12,7 @@ Press `I`, `J`, `K`, `L` to move the gameobject on the left, and to move the gam
 Press `Num1` and `Num2` to switch the mesh of the gameobject on the left.
 
 ## Summary
-In this assignment, I implemented Gameobject class in the easiest way like this.
+Campared with hard-coded vertices data, we prefer save data in files in specific format. This time we use lua script to save vertices and indices, and we want to make it human-readable.
 
 ## Requirements
 [Assignment Requirement](/assets/Requirement_06.pdf)
@@ -21,11 +21,11 @@ In this assignment, I implemented Gameobject class in the easiest way like this.
 ![](/img/in-post/write-up-06/1.gif)
 
 #### Human-readable Asset File
-In this assignment, I implemented Gameobject class in the easiest way like this.
+It's not so easy to make data file readable. 
 
 
 #### My Mesh File
-```Lua
+```lua
 return
 {
 	Vertices=
