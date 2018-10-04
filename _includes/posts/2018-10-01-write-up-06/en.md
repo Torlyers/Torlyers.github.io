@@ -59,6 +59,13 @@ return
 }
 ```
 
+#### Mesh Builder & Mesh Manager
+This time we just simply cope all the mesh files that were registered to the output folder. In the future we will transfer them into binary files.
+
+`Mesh Manager` is a static variable which manages all the meshes that were loaded from files. We use handles to get the mesh we want, which is the same as how we manage shaders. The good thing is that we can use the same base builder and base manager to manage all the resource files.
+
+
+
 ## Traps and Tips
 * While reading lua files, you need to pop after every pushing. The hard part is to keep the whole process clear, or it's difficult to debug
 
