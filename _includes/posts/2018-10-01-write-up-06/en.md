@@ -12,7 +12,7 @@ Press `I`, `J`, `K`, `L` to move the gameobject on the left, and to move the gam
 Press `Num1` and `Num2` to switch the mesh of the gameobject on the left.
 
 ## Summary
-Campared with hard-coded vertices data, we prefer save data in files in specific format. This time we use lua script to save vertices and indices, and we want to make it human-readable.
+Campared with hard-coded vertices data, we prefer save data in files in specific format. This time we use lua script to save vertices and indices, and we want to make it human-readable so that we can modify and debug easily. What I'm thinking is that do we often need to look up in the data file directly.
 
 ## Requirements
 [Assignment Requirement](/assets/Requirement_06.pdf)
@@ -21,7 +21,11 @@ Campared with hard-coded vertices data, we prefer save data in files in specific
 ![](/img/in-post/write-up-06/1.gif)
 
 #### Human-readable Asset File
-It's not so easy to make data file readable. 
+It's not so easy to make data file readable because basically it's a text file. I consider that trying to make it like a e-table file could be better, so I use some comments as colume titles and index. 
+
+For vertices data, I think they should be ordered. And for each vertex, it could include position, color, and different kinds of textures. In this case, we need to set keys for them.
+
+For indices data, I just put all of them in a table, and use comments as index, which did't add any complexity but make it more readable
 
 
 #### My Mesh File
@@ -56,7 +60,7 @@ return
 ```
 
 ## Traps and Tips
-* Have fun!
+* While reading lua files, you need to pop after every pushing. The hard part is to keep the whole process clear, or it's difficult to debug
 
 ---
 
