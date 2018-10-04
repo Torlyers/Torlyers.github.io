@@ -5,14 +5,14 @@
 #### Controls
 Press `SPACE` key to slow down to 0.5 times, and release it to recover.
 
-Press `W`, `A`, `a`, `D` to move the main camera. 
+Press `W`, `A`, `S`, `D` to move the main camera. 
 
 Press `I`, `J`, `K`, `L` to move the gameobject on the left, and to move the gameobject on the right if `Shift` is pressed.
 
 Press `Num1` and `Num2` to switch the mesh of the gameobject on the left.
 
 ## Summary
-Campared with hard-coded vertices data, we prefer save data in files in specific format. This time we use lua script to save vertices and indices, and we want to make it human-readable so that we can modify and debug easily. What I'm thinking is that do we often need to look up in the data file directly.
+Campared with hard-coded vertices data, we prefer save data in files in specific format. This time we use lua script to save vertices and indices, and we want to make it human-readable so that we can modify and debug easily. There would be some time we need to look up in the data file directly, which means make data files readable (and we always want the data structure efficient) is necessary.
 
 ## Requirements
 [Assignment Requirement](/assets/Requirement_06.pdf)
