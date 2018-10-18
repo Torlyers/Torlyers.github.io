@@ -12,7 +12,7 @@ Press `I`, `J`, `K`, `L` to move the gameobject on the left, and to move the gam
 Press `Num1` and `Num2` to switch the mesh of the gameobject on the left.
 
 ## Summary
-After build human-readable mesh files, we want to apply it into more uses. This time we build meshes in Maya and export it into our own formats. Literually, we can export whatever meshes to the game engine only if it has less than 65535 vertices, which is enough for most of the meshes that we want to render in real-time.
+After build human-readable mesh files, we want to apply it into more uses. This time we build meshes in Maya and export it into our own formats. Literually, we can export whatever meshes to the game engine only if it has less than 65535 vertices, which is enough for most of the meshes that we want to render in real-time. In this way, we don't need to calculate a cube's vertices and indices anymore :)
 
 ## Requirements
 [Assignment Requirement](/assets/Requirement_07.pdf)
