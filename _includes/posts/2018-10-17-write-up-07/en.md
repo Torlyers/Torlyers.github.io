@@ -22,11 +22,16 @@ After build human-readable mesh files, we want to apply it into more uses. This 
 
 #### MayaMeshExporter
 
+The `MayaMeshExporter` depends on `Windows` project, and no project depends on it. It's just an exporter, which is not used in the engine or the game. 
+
 #### Vertex Data
+
+There is unused data in Maya's mesh file. I chose to ingore it and only take position data. I know at least we can use color information. I didn't do that just because I was lazy and I'll add color to my meshes this weekend.
 
 #### Debugging
 
 #### Mesh with Too Many Vertices
+Since we use `uint16_t` to save our indice data, we cannot have over 2^16 vertices in each mesh. Generally we won't use mesh with so many vertices in a game, so I choose to check the number of vertices before import and reject it if a mesh have too many vertices.
 
 ## Traps and Tips
 * 
