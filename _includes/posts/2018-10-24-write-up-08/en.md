@@ -55,6 +55,8 @@ uint16_t* indexBuffer = reinterpret_cast<uint16_t*>(currentOffset);
 
 The two main advantages of binary files are that they are much smaller and faster. I believe the general solution of handling game data is build human-readable files into binary files. To prove this, here's the profiling data.
 
+I build a donut that has 6429 vertices. The size of exported Lua file is 2.54mb. After building it to binary files, it's only 476kb. To read Lua file, it takes 0.297s. And it takes 0.001s to read the binary file.
+
 
 ## Traps and Tips
 * I tried to convert buffers into STL `vector` so that we don't need to pass four parameters, and STL does have a constructor that doesn't copy the buffer. However, it doesn't work in OpenGL. 
