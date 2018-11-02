@@ -19,6 +19,6 @@ multilingual: false
 
 <!-- English Version -->
 <div class="en post-container">
-    {% capture about_en %}{% include posts/2018-11-11-write-up-10/en.md %}{% endcapture %}
+    {% capture about_en %}{% include posts/2018-11-01-write-up-10/en.md %}{% endcapture %}
     {{ about_en | markdownify }}
 </div>
