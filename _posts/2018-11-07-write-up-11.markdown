@@ -1,0 +1,24 @@
+---
+layout:       post
+title:        "[EAE 6320] Engine System Project Update 1"
+subtitle:     "Project Framework & Height Map"
+date:         2018-11-07 12:00:00
+author:       "Zhitao"
+header-img:   "img/in-post/write-up-11/bg.jpg"
+header-mask:  0.3
+catalog:      true
+multilingual: false
+
+---
+
+<!-- Chinese Version -->
+<!-- <div class="zh post-container">
+    {% capture about_zh %}{% include posts/2018-08-29-write-up-01/zh.md %}{% endcapture %}
+    {{ about_zh | markdownify }}
+</div> -->
+
+<!-- English Version -->
+<div class="en post-container">
+    {% capture about_en %}{% include posts/2018-11-01-write-up-10/en.md %}{% endcapture %}
+    {{ about_en | markdownify }}
+</div>
