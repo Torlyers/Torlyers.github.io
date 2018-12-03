@@ -8,6 +8,8 @@ This week I was trying to transfer my terrain mesh into a Minecraft-style voxel 
 
 Besides, I adjusted my first person camera. Add eular angles and fix the problem that mouse cursor blocked by screen borders.
 
+![](/img/in-post/write-up-14/2.JPG)
+
 ## Game Features
 
 ![](/img/in-post/write-up-14/1.png)
