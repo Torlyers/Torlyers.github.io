@@ -24,9 +24,9 @@ Now I calculate all vertices according to meightmaps. There are two ways I'm try
 
 ## Collision Detect System
 
-To detect overlap and collisions, I chose to use Yitong's collision system.
+To detect overlap and collisions, I chose to use Yitong Dai's collision system.
 
-![EAE6320 3D Collision Response](https://yzd0014.wixsite.com/dyt1205/blog/eae6320-3d-collision-response)
+[EAE6320 3D Collision Response](https://yzd0014.wixsite.com/dyt1205/blog/eae6320-3d-collision-response)
 
 
 The good thing is that my gameobjects are all in a fixed size, so that I don't need to set collider's size for every of them. And I can use the `Gameobject` class that Yitong provides. 
