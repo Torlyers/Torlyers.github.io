@@ -1,18 +1,12 @@
-> Minecraft Flight Simulator
+> Steering Algorithms
 
-## The game
-[Click to download the Game](/assets/FinalProject.zip)
 
-#### Controls
-
-Use mouse to control direction.
-
-Press `SPACE` key to accelerate.
 
 ## Summary
-My final project is a simple flight simulator. You can control a small plane to fly over a random 500x500 voxel terrain with color. Try to collect as many coins as you can.
 
-## Game Features
+
+
+## Framework
 
 ***[Game Image]***
 
