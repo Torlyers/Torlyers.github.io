@@ -1,6 +1,6 @@
 ---
 layout:       post
-title:        "[EAE 6900-023] Assignment 09"
+title:        "[EAE 6900-023] Assignment 01"
 subtitle:     "Steering Algorithms"
 date:         2019-01-30 12:00:00
 author:       "Zhitao"
