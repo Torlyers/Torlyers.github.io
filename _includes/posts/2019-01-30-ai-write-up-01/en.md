@@ -112,7 +112,7 @@ I implemented both kinematic wander and dynamic wander. You can see kinematic ve
 
 One important thing is that the result of `RandomBinomial` is often small. So the max angular velocity/acceleration should be large enough because the target changes every frame, or the wander will be totally linear. For the same reason, the parameter `targetDistance` shouldn't be too larger than `targetRadius` in `DynamicWander`.
 
-`DynamicWander` is implemented by finding a random targetdelegated to `DynamicSeek`, which reminds me of making basic behaviors solid is pretty important.
+`DynamicWander` is implemented by finding a random targetdelegated to `DynamicSeek` and `DynamicAlign`, which reminds me of making basic behaviors solid is pretty important.
 
 
 #### Flocking
@@ -125,8 +125,11 @@ The flocking behaviour is different. Here I have a leader boid and a bunch of fo
 * DynamicVelocityMatch
 * DynamicAlign
 
-`DynamicVelocityMatch`
-`DynamicSeperation`
+`DynamicVelocityMatch` is used to keep boids following orderly. The weight of this behavior depends on if you want boids in order or not.
+
+`DynamicSeperation` add "forces" from boids together and apply it to every boid. The possible problem here is that final output is pretty small. Here are two reasons. First is that these accelerations have different direction and will intercounter each other. Second is that all the "forces" will be divided by the square of distance, which could be a large number. Therefore, the `k` value should be large enough.
+
+Here's the problem. While blending behaviors, some outputs are "natrually" if lower weight because of algorithm and parameters. I consider that we should make sure that all the outputs we want to blend should be distributed the same range, or the weights are meaningless. It's difficult to change algorithms to make sure they have output in similar range. Maybe we can interpolate them in to a proper range while blending.
 
 ## Appendix
 
