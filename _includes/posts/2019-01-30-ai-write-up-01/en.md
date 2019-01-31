@@ -8,6 +8,7 @@
 * Press `4` to switch to the flocking mode.
 * Press `5` to use kinematic steering.
 * Press `6` to use dynamic steering. 
+* Press `7` to use switch leader. 
 
 While seeking, press mouse left button to change the seeking target.
 
@@ -115,7 +116,8 @@ One important thing is that the result of `RandomBinomial` is often small. So th
 
 #### Flocking
 
-![](/img/in-post/ai-write-up-01/3.gif)
+![](/img/in-post/ai-write-up-01/7.gif)
+![](/img/in-post/ai-write-up-01/8.gif)
 
 The flocking behaviour is different. Here I have a leader boid and a bunch of follower boids. The leader uses wander steering and followers use flocking steering. The flocking steering behaviour is blended by these algorithms:
 * DynamicSeperation
