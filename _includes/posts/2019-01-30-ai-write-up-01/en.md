@@ -131,7 +131,7 @@ Here's the problem. While blending behaviors, some outputs are "natrually" if lo
 
 About the number of followers,
 
-About changing leaders,
+About switching leaders, it's essentially just apply `DynamicWander` to a random follower, and make the elder leader to be a follower. All the boids just follow a new leader. Nothing else.
 
 
 ## Appendix
