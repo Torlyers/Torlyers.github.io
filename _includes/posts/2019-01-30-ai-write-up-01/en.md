@@ -19,6 +19,8 @@ This assignment includes two parts. The first part is to develop a game framewor
 
 In the process, I thought a lot about algorithms and the framework. Some of the algorithms can have something wrong or can be improved. While blending steeing outputs, I spent much time on how to set parameters. Another thing is to unify interfaces for all steering objects. it's hard to get a perfect code structure and outcome. I did my best and I think it works well.
 
+After finished this assignment. I think the most important thing I learned is that Although these basic algorithms are not difficult, we can still get complex behaviors by blending them together like flocking and adjusting parameters. It could be very useful in a real game. Therefore, a structure that can easily blend basic behavior is essential for an steering system. And basic steering behaviors should be robust enough.
+
 ## Framework
 
 #### Game
@@ -56,17 +58,75 @@ About the return value `SteeringOutput`, it only has linear and angular in Rogel
 
 ![](/img/in-post/ai-write-up-01/1.JPG)
 
+In this mode, the boid just go straight from bottom left in a fixed speed, and turn left when collide with borders. 
+```c++
+output.velocity = boid->GetKinematic().GetDirection() * speed;
+```
+It's a kinematic movement and I set the "output" manually just for testing the kinematic component, which works well enough.
+Although this part is simply, i think it important. You must make sure your kinematic is robust, or there will be bugs that are difficult to fix while using the output of steering algorithms because you don't know it's from algorithm itself or kinematic. I made as many tests as I can here to make sure the kinematic and the boid work perfectly.
+
 #### Seek
+
+***Kinematic***
+
+![](/img/in-post/ai-write-up-01/4.gif)
+
+***Dynamic***
 
 ![](/img/in-post/ai-write-up-01/1.gif)
 
+For the seek behavior, I used four steering algorithms:
+* DynamicSeek
+* KinematicArrive
+* DynamicArrive
+* DynamicAlign
+
+`DynamicSeek` is for the basic movement before the boid reach the slow radius. You can see the boid has a smooth acceleration and keeps a fixed velocity according to the .gif. In this algorithm the boid always gets a max acceleration, which I think is not necessary. The better way is to make user set this parameter. So I wrote a setter for steering component to make it more flexible. 
+
+`KinematicArrive` doesn't have good effect because it simply stop the boid. In my experience, any sudden movements in a game look not natural. But if gameplay need it, it can still of use.
+
+`DynamicArrive` works well. However, you have to adjust acceleration and time to target a lot to make it stop in time. Literally, you can calculate the stopping time according to deceleration and radius. You cannot make sure the boid always stop because we don't change velocity directly. Then it will dangle between the target. So I munually stop the boid after it enter the target radius. If the velocity of the boid is small enough, it looks natural enough. There is an possible improvement in the algorithm. While calculating the factor, use this formula could be more accurate:
+```c++
+factor = (distance - targetRaduis) / (slowRadius - targetRadius);
+```
+Both arrive algorithm have a problem, which is they give the boid a fixed velocity/acceleration. I don't think it's reasonable. Seek steering can handle this. Arrive steering shouldn't do anything before starting arriving bacause the movement before could be complex. Here is my solution.
+```c++
+output = boid->GetSteeringComponent()->GetSteering(DYNAMIC_ARRIVE);
+if (output.type == NONE)
+	output = boid->GetSteeringComponent()->GetSteering(DYNAMIC_SEEK);
+```
+
+`DynamicAlign` is the only angular steering bahavior in this part. Actually I believe it should be called `DynamicAngularArrive` because it's algorithm is basicly an angular version of `DynamicArrive`. Therefore, it also have the problems I mentioned about arrive. I tested max angular acceleration and time to target many times to make sure it has the best behavior.
+
 #### Wander
 
+***Kinematic***
+
+![](/img/in-post/ai-write-up-01/5.gif)
+
+***Dynamic***
+
 ![](/img/in-post/ai-write-up-01/2.gif)
+
+I implemented both kinematic wander and dynamic wander. You can see kinematic version is more linear while dynamic version is more curved. But it's not because of algorithm themselves. Parameters are the key elements here. The basic mentality of both algorithm is to let the boid keep making small rotation. And they all use `RandomBinomial()` to get this small rotation. So their bahaviors are pretty similar literally. My feeling is dynamic wandering is more smooth cause it's use angular acceleration to turn to new direction.
+
+One important thing is that the result of `RandomBinomial` is often small. So the max angular velocity/acceleration should be large enough because the target changes every frame, or the wander will be totally linear. For the same reason, the parameter `targetDistance` shouldn't be too larger than `targetRadius` in `DynamicWander`.
+
+`DynamicWander` is implemented by finding a random targetdelegated to `DynamicSeek`, which reminds me of making basic behaviors solid is pretty important.
+
 
 #### Flocking
 
 ![](/img/in-post/ai-write-up-01/3.gif)
+
+The flocking behaviour is different. Here I have a leader boid and a bunch of follower boids. The leader uses wander steering and followers use flocking steering. The flocking steering behaviour is blended by these algorithms:
+* DynamicSeperation
+* DynamicSeek
+* DynamicVelocityMatch
+* DynamicAlign
+
+`DynamicVelocityMatch`
+`DynamicSeperation`
 
 ## Appendix
 
