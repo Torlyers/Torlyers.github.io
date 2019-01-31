@@ -138,4 +138,4 @@ About switching leaders, it essentially just applies `DynamicWander` to a random
 
 ## Appendix
 
-[Click to download the Game](/assets/A09_Zhitao.zip)
+[Click to download the Game](/assets/AIAssignment.zip)
