@@ -1,6 +1,5 @@
 > Steering Algorithms
 
-
 ## Control
 
 * Press `1` to switch to the basic motion mode.
@@ -11,7 +10,6 @@
 * Press `6` to use dynamic steering. 
 
 While seeking, press mouse left button to change the seeking target.
-
 
 ## Summary
 
@@ -131,8 +129,11 @@ The flocking behaviour is different. Here I have a leader boid and a bunch of fo
 
 Here's the problem. While blending behaviors, some outputs are "natrually" if lower weight because of algorithm and parameters. I consider that we should make sure that all the outputs we want to blend should be distributed the same range, or the weights are meaningless. It's difficult to change algorithms to make sure they have output in similar range. Maybe we can interpolate them in to a proper range while blending.
 
+About the number of followers,
+
+About changing leaders,
+
+
 ## Appendix
 
 [Click to download the Game](/assets/A09_Zhitao.zip)
-
-
