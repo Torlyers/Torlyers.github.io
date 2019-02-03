@@ -15,11 +15,16 @@ Press `W`, `A`, `S`, `D` to move the main camera.
 #### Handles and Indices
 
 
-#### Depth Calculation
-
-
 #### Encode RenderCommand
+
+![](/img/in-post/write-up-gra-01/1.JPG)
+
+
+#### Sorting by Depth
+
+![](/img/in-post/write-up-gra-01/1.gif)
+![](/img/in-post/write-up-gra-01/2.gif)
 
 
 ## Traps and Tips
-* While reading lua files, you need to pop after every pushing. The hard part is to keep the whole process clear, or it's difficult to debug
+* Wh
