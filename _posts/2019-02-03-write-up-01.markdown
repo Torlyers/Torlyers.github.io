@@ -1,8 +1,6 @@
-
-
 ---
 layout:       post
-title:        "[EAE 6900-026] Write Up 01"
+title:        "[EAE 6900-026] Write-Up 01"
 subtitle:     "Render Command"
 date:         2019-02-03 12:00:00
 author:       "Zhitao"
