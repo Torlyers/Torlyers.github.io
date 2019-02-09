@@ -1,7 +1,7 @@
 > Render Command
 
 ## The game
-[Click to download the Game](/assets/GA01_Zhitao.zip)
+[Click to download the Game](/assets/GA02_Zhitao.zip)
 
 #### Controls
 
