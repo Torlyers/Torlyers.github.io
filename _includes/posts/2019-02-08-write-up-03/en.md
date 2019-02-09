@@ -9,6 +9,8 @@ Use mouse to control direction.
 
 Press `W`, `A`, `S`, `D` to move the main camera. 
 
+Press `I`, `J`, `K`, `L` to move the sphere. 
+
 ## Summary
 
 Before this assignment, we need to bind a effect before every drawcall, which is too expensive. This time we use render commands to save all the data needed for a draw call. We can sort all render commands before render a frame so that meshes using the same effect can be rendered together. Also, meshes are sorted by the distance from the camera, which makes sure that we can always render the mesh that is closer to the camera first.
