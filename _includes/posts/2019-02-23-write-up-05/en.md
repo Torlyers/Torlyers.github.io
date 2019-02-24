@@ -38,14 +38,16 @@ My `cRenderState` class is now handled by asset manager. For every draw call, if
 ![](/img/in-post/write-up-gra-04/1.gif)
 
 ***Command Type***
+
 Now we have dependent materials and independent materials. They have different sorting order. We use the first bit in render command to present these two type. Indenpendent material is 0 while dependent material is 1, which make sure that independent materials will be drawn first.
 
 ***Depth***
+
 For dependent materials, depth must be considered first and sorted from far to near. We still want to sort all draw calls in one sorting. So I handled depth like this.
 ```c++
 if (isEnableAlpha)
-	{
-		depth = cameraFar - distance;
-	}
+{
+	depth = cameraFar - distance;
+}
 ```
 In this way, far objects will have prior rendering orders.
