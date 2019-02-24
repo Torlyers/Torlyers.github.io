@@ -1,10 +1,10 @@
 ---
 layout:       post
 title:        "[EAE 6900-026] Write-Up 05"
-subtitle:     "Alpha Blending"
-date:         2019-02-19 12:00:00
+subtitle:     "Transparenrt materials"
+date:         2019-02-23 12:00:00
 author:       "Zhitao"
-header-img:   "img/in-post/write-up-gra-04/bg.jpg"
+header-img:   "img/in-post/write-up-gra-05/bg.jpg"
 header-mask:  0.3
 catalog:      true
 multilingual: false
@@ -19,6 +19,6 @@ multilingual: false
 
 <!-- English Version -->
 <div class="en post-container">
-    {% capture about_en %}{% include posts/2019-02-19-write-up-04/en.md %}{% endcapture %}
+    {% capture about_en %}{% include posts/2019-02-23-write-up-05/en.md %}{% endcapture %}
     {{ about_en | markdownify }}
 </div>
