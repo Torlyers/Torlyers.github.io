@@ -1,7 +1,7 @@
 > Material
 
 ## The game
-[Click to download the Game](/assets/GA03_Zhitao.zip)
+[Click to download the Game](/assets/GA04_Zhitao.zip)
 
 #### Controls
 
@@ -9,14 +9,13 @@ Use mouse to control direction.
 
 Press `W`, `A`, `S`, `D` to move the main camera. 
 
-Press `I`, `J`, `K`, `L` to move the sphere. 
-
-
 ## Requirements
 
 #### Material
 
 * Class
+
+
   
 * Human-readable File
   
@@ -31,10 +30,11 @@ Press `I`, `J`, `K`, `L` to move the sphere.
 * Interface
 
 * Sorting
+  
+![](/img/in-post/write-up-gra-04/1.gif)
 
 
 #### Debugging
 
-
-
+![](/img/in-post/write-up-gra-04/1.JPG)
 
