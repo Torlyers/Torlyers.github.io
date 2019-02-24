@@ -2,7 +2,7 @@
 layout:       post
 title:        "[EAE 6900-026] Write-Up 04"
 subtitle:     "Material"
-date:         2019-02-23 12:00:00
+date:         2019-02-19 12:00:00
 author:       "Zhitao"
 header-img:   "img/in-post/write-up-gra-04/bg.jpg"
 header-mask:  0.3
