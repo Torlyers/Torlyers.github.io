@@ -17,9 +17,12 @@ While a star Pathfinding, press mouse left button to set the aim point. (will fa
 
 ## Summary
 
+This assignment is mostly about data structure graph and pathfinding algorithms. I implemented graph class, two path finding algorithms, and two heuristics. In this end, I combined path finding and steering behavior together to make a scene that support a star path finding.
 
 
-## Framework
+
+
+## Data Structure
 
 #### Graph
 
