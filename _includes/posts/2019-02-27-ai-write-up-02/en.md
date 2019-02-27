@@ -19,36 +19,35 @@ While a star Pathfinding, press mouse left button to set the aim point. (will fa
 
 This assignment is mostly about data structure graph and pathfinding algorithms. I implemented graph class, two path finding algorithms, and two heuristics. In this end, I combined path finding and steering behavior together to make a scene that support a star path finding.
 
+Compared with the last time, I spent more time on choosing data structure. A good container can save you a lot of running time, and it's easier to finish codes. For example, I used `std::set` to save node records as open list and close list in pathfinding algorithms. It supports quick insertion and erase. Also, it's an ordered container itself. We can easily get the node record that has the lowest cost.
 
+Optimization is very important. My A Star mode is kind of slow in debug mode. It worked well in release mode. I tried some methods to save the cost.
 
-
-## Data Structure
+## Details
 
 #### Graph
+
+***My Graph***
+
+
+***Very Big Graph***
 
 
 #### Grid
 
 
-#### PathFinding
-
-
-
-
-## Algorithms
-
-#### Create Graph
 
 
 #### PathFinding
 
-***A Star***
-
-![](/img/in-post/ai-write-up-01/4.gif)
 
 ***Dijkstra***
 
-![](/img/in-post/ai-write-up-01/1.gif)
+![](/img/in-post/ai-write-up-02/1.JPG)
+
+***A Star***
+
+![](/img/in-post/ai-write-up-02/2.JPG)
 
 
 
