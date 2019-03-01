@@ -21,7 +21,7 @@ This assignment is mostly about data structure graph and pathfinding algorithms.
 
 Compared with the last time, I spent more time on choosing data structure. A good container can save you a lot of running time, and it's easier to finish codes. For example, I used `std::set` to save node records as open list and close list in pathfinding algorithms. It supports quick insertion and erase. Also, it's an ordered container itself. We can easily get the node record that has the lowest cost.
 
-Optimization is very important. My A Star mode is kind of slow in debug mode. It worked well in release mode. I tried some methods to save the cost.
+According to profiling, I optimized some classes to get a better run-time performance. I believe there are still many stuff I could do to make it faster.  
 
 ## Details
 
@@ -55,11 +55,11 @@ Optimization is very important. My A Star mode is kind of slow in debug mode. It
 
 ***Manhattan Distance***
 
-![](/img/in-post/ai-write-up-01/5.gif)
+
 
 ***Euclidian distance***
 
-![](/img/in-post/ai-write-up-01/2.gif)
+
 
 
 
