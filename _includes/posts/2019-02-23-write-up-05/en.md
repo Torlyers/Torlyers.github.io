@@ -35,7 +35,7 @@ My `cRenderState` class is now handled by asset manager. For every draw call, if
 
 #### Sorting
 
-![](/img/in-post/write-up-gra-04/1.gif)
+![](/img/in-post/write-up-gra-05/1.gif)
 
 ***Command Type***
 
