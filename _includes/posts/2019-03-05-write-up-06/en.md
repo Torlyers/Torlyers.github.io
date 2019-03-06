@@ -1,7 +1,7 @@
-> Transparenrt materials
+> Texture
 
 ## The game
-[Click to download the Game](/assets/GA05_Zhitao.zip)
+[Click to download the Game](/assets/GA06_Zhitao.zip)
 
 #### Controls
 
@@ -11,43 +11,47 @@ Press `W`, `A`, `S`, `D` to move the main camera.
 
 ## Summary
 
-This time I add transparent material to the engine. Depth test and alpha blending need to be enabled. And we need new render command type and new sorting order. Transparent materials are regarded as dependent ones and should be rendered from far to near at last.
+This time we added textures to the game. For build pipeline, I added `TextureBuilder` and changed material part to add diffuse texture to materials. UV information was added to vertex structure. For run time, I added codes to load and bind textures and sampler states, which have responding buffer in GPU.
 
 ## Requirements
 
-#### Dependent Material
+#### Build Pipeline
 
-For transparent materials, we need to look through them and see other meshes behind, which means transparent materials depend on opaque materials. 
+***UVs***
 
-***Render States***
+To use texture, we need to have UV information in mesh. While exporting mesh file, we need to add UV position to every vertex. The coordinate in Maya is different with that in D3D, swaping u and v value can make it consistent. Respoinding changes should be made in mesh builder, andvertex structure.
 
-To enable alpha transparent effect, we need to enable depth test and alpha blend in render states settings.
+***Material***
+
+We need to add texture file path to material. Here's my readable material file.
+
 ```lua
 {
-	VertexShaderFileName="data/shaders/vertex/standard.shader";
-	FragmentShaderFileName="data/shaders/fragment/standard.shader";
-	EnableAlphaTransparency=true;
-	EnableDepthBuffering=true;
-	EnableDrawBothTriangleSides=false;
+	EffectName="data/effects/standardAlpha.eft";
+	Color={200, 35, 35, 255};
+	DiffuseTexturePath="data/textures/man.tex";
 }
 ```
-My `cRenderState` class is now handled by asset manager. For every draw call, if it uses the same render states as the last one, we don't need reset them.
 
-#### Sorting
+Diffuse texture path is an optional value. If user doesn't want it, the engine will use a default one, which is included in engine contents and will always be built.
 
-![](/img/in-post/write-up-gra-05/1.gif)
+There may be some other textures in the future like normal map. This item can be a list.
 
-***Command Type***
+#### Load & Bind
 
-Now we have dependent materials and independent materials. They have different sorting order. We use the first bit in render command to present these two type. Indenpendent material is 0 while dependent material is 1, which make sure that independent materials will be drawn first.
+While loading material, we'll also load a texture and get a handle. Before rendering, we need to bind texture to a texture buffer according to an register id, which is already defined in `shader.inc`, making sure every shader has it. 
 
-***Depth***
+Same thing should be done for sampler state. But i didn't add it to every texture. I just created a default one while initialization and bind it. All textures will use the same one.
 
-For dependent materials, depth must be considered first and sorted from far to near. We still want to sort all draw calls in one sorting. So I handled depth like this.
-```c++
-if (isEnableAlpha)
-{
-	depth = cameraFar - distance;
-}
+#### Shader
+
+To use texture, we need to update vertex layout description in C++ code, and vertex shader input layout in shader code. Every vertex has a new element UV, whose semantic is `TEXCOORD`. After we got UV information in vertex shader, we can pass it to fragment shader and call
+```HLSL
+SampleTexture2d(g_diffuse_texture, g_diffuse_samplerState, i_uv)
 ```
-In this way, far objects will have prior rendering orders.
+to get a `float4` color. And then we can blend it which whatever color we like.
+
+#### Result
+
+![](/img/in-post/write-up-gra-06/1.JPG)
+
