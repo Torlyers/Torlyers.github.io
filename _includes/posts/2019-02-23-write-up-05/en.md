@@ -17,12 +17,14 @@ This time we added textures to the game. For build pipeline, I added `TextureBui
 
 #### Build Pipeline
 
-
-***Texture***
-
 ***UVs***
 
+To use texture, we need to have UV information in mesh. While exporting mesh file, we need to add UV position to every vertex. The coordinate in Maya is different with that in D3D, swaping u and v value can make it consistent. Respoinding changes should be made in mesh builder, andvertex structure.
+
 ***Material***
+
+We need to add texture file path to material. Here's my readable material file.
+
 ```lua
 {
 	EffectName="data/effects/standardAlpha.eft";
@@ -31,11 +33,23 @@ This time we added textures to the game. For build pipeline, I added `TextureBui
 }
 ```
 
+Diffuse texture path is an optional value. If user doesn't want it, the engine will use a default one, which is included in engine contents and will always be built.
+
+There may be some other textures in the future like normal map. This item can be a list.
+
 #### Load & Bind
 
+While loading material, we'll also load a texture and get a handle. Before rendering, we need to bind texture to a texture buffer according to an register id, which is already defined in `shader.inc`, making sure every shader has it. 
 
+Same thing should be done for sampler state. But i didn't add it to every texture. I just created a default one while initialization and bind it. All textures will use the same one.
 
 #### Shader
+
+To use texture, we need to update vertex layout description in C++ code, and vertex shader input layout in shader code. Every vertex has a new element UV, whose semantic is `TEXCOORD`. After we got UV information in vertex shader, we can pass it to fragment shader and call
+```HLSL
+SampleTexture2d(g_diffuse_texture, g_diffuse_samplerState, i_uv)
+```
+to get a `float4` color. And then we can blend it which whatever color we like.
 
 #### Result
 
