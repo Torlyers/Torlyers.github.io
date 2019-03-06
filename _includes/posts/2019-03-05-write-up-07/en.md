@@ -17,18 +17,21 @@ Press `W`, `A`, `S`, `D` to move the main camera.
 
 #### Filtering
 
-
+![](/img/in-post/write-up-gra-07/1.jpg)
 
 #### Mipmaps
 
-
+![](/img/in-post/write-up-gra-07/1.gif)
+![](/img/in-post/write-up-gra-07/4.gif)
+![](/img/in-post/write-up-gra-07/5.gif)
 
 #### Alpha Channel
 
+![](/img/in-post/write-up-gra-07/2.jpg)
 
 #### Texture Scrolling
 
 #### More Texture Effect
 
-![](/img/in-post/write-up-gra-06/1.JPG)
+
 
