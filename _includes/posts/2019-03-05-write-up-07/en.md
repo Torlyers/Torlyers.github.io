@@ -31,7 +31,9 @@ Press `W`, `A`, `S`, `D` to move the main camera.
 
 #### Texture Scrolling
 
+![](/img/in-post/write-up-gra-07/3.gif)
+
 #### More Texture Effect
 
-
+![](/img/in-post/write-up-gra-07/2.gif)
 
