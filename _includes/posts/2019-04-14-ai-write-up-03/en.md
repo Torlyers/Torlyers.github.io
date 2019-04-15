@@ -76,6 +76,7 @@ public:
     void CleanUp();
 
     //setters
+
     void SetLeft(DTNode* i_node);
     void SetRight(DTNode* i_node);
     void Setbehavior(BehaviorBase* i_behavior);
@@ -88,6 +89,7 @@ protected:
     PropertyType m_propertyType;
 
     //only for leaf nodes
+    
     BehaviorBase* m_behavior;
 };
 ```
@@ -101,6 +103,7 @@ public:
 	DecisionTree(DataMap* i_dataMap);
 
 	//setters
+
 	void SetRoot(DTNode* i_node);
 	BehaviorBase* MakeDecision();
 
@@ -147,12 +150,15 @@ void Exit(BTTick i_tick);
 In my behavior tree, I implemented four different nodes: composite node, decorator node, sequence node, and selector node. 
 
 ***Sequence Node***
+
 Sequence node is a composite node that can have many children nodes. A composite node's state depends on his children's states. The sequence node will execute all his children in order from left to right. If will return `SUCCESS` only if all his children return `SUCCESS`. It's kind of like `and` operator in programming.
 
 ***Selector Node***
+
 Selector node is also a derived class on the composite node. It also executes all his children in order. The difference is that it will stop executing once one child node returns `SUCCESS` and itself will return `SUCCESS` right away. Selector node is like the `or` operator in programming.
 
 ***Decorator Node***
+
 Decorator node can only have one child, which is like a condition. It will execute the child if the condition is true. It's kind of a decision tree node so I implemented them in a basic same way. It has an attribute and a test value from the world state.
 
 Here is my behavior tree instance:
@@ -184,13 +190,16 @@ There are two concepts to evaluate the effect of an attribute. The first one is 
     }
 
     //Find the most effective attribute according to gains
+
     auto bestAttribute = FindBestAttribute(i_table);
     node->SetPropertyType(bestAttribute);	
 
     //update tables and attributes
+
     //...
 
     //recursively build the tree
+
     node->SetLeft(MakeDecisionTree(i_tree, leftRemainTable, remainAttributes));
     node->SetRight(MakeDecisionTree(i_tree, rightRemainTable, remainAttributes));
 
