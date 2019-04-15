@@ -120,9 +120,46 @@ The tree has three decision nodes and three behaviors. First, it will check the 
 
 #### Behavior Tree
 
-Behaviour Tree is a very popular decision making tool in game development. Campared with decision tree, it's more complex but more reusable and extensible.
+Behavior Tree is a very popular decision-making tool in game development. Compared with the decision tree, it's more complex but more reusable and extensible. Behavior trees include different kinds of nodes: action node, composite node, and decorator node. And they can have some derived nodes. 
+
+The decision-making process starts from the root node, then executes children nodes until successfully execute an action node. Every node has a state. 
+
+```c++
+enum class NodeState
+{
+	NONE = 0,
+	SUCCESS = 1,
+	FAILURE = 2,
+	RUNNING = 3
+};
+```
+
+Also, each node has five event functions to do different things. They accept tick object as input. `BTTick` is a class for passing context between neighbor nodes. It has a pointer to the blackboard, which is a block of memory that saves some global data between nodes and trees. It has another pointer to the tree itself so that every node can access to the tree.
+
+```c++
+void Enter(BTTick i_tick);
+void Open(BTTick i_tick);
+NodeState Execute(BTTick i_tick);
+void Close(BTTick i_tick);
+void Exit(BTTick i_tick);
+```
+
+In my behavior tree, I implemented four different nodes: composite node, decorator node, sequence node, and selector node. 
+
+***Sequence Node***
+Sequence node is a composite node that can have many children nodes. A composite node's state depends on his children's states. The sequence node will execute all his children in order from left to right. If will return `SUCCESS` only if all his children return `SUCCESS`. It's kind of like `and` operator in programming.
+
+***Selector Node***
+Selector node is also a derived class on the composite node. It also executes all his children in order. The difference is that it will stop executing once one child node returns `SUCCESS` and itself will return `SUCCESS` right away. Selector node is like the `or` operator in programming.
+
+***Decorator Node***
+Decorator node can only have one child, which is like a condition. It will execute the child if the condition is true. It's kind of a decision tree node so I implemented them in a basic same way. It has an attribute and a test value from the world state.
+
+Here is my behavior tree instance:
 
 ![](/img/in-post/ai-write-up-03/3.jpg)
+
+
 
 ![](/img/in-post/ai-write-up-03/2.gif)
 
