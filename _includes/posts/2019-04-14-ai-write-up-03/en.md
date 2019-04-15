@@ -22,11 +22,7 @@ While in pathfinding mode or all decision making modes, click mouse left button 
 
 The assignment is mainly about decision making. The post covers decision trees, behavior trees, and decision tree learning. 
 
-For the decision tree, I implemented both tree class and node class. I used a map to save world states, which can be used as a context between nodes. 
-
-For the behavior tree, I implemented different kinds of nodes, tree, tick, and blackboard. The world state map can also be used in my behavior tree.
-
-I implemented the ID3 algorithm for learning decision trees. The data set for learning is from decision tree instances I made.
+For the decision tree, I implemented both tree class and node class. I used a map to save world states, which can be used as a context between nodes. For the behavior tree, I implemented different kinds of nodes, tree, tick, and blackboard. The world state map can also be used in my behavior tree. I also implemented the ID3 algorithm for learning decision trees. The data set for learning is from decision tree instances I made.
 
 In the game, the AI boid will path following to the player or wander around to eat the player. Try to avoid it.
 
@@ -65,14 +61,62 @@ protected:
 
 #### Decision Tree
 
-A Decision tree is a flowchart like tree structure, where each internal node denotes a test on an attribute, each branch represents an outcome of the test, and each leaf node holds an action.
+A Decision tree is a flowchart-like tree structure, where each internal node denotes a test on an attribute, each branch represents an outcome of the test, and each leaf node holds an action. 
+
+There are two types of nodes in the decision tree. The first one is the decision node, which has an attribute and a test value to make decisions. Decision nodes are not leaf nodes. The second one is action node. All action nodes are leaf nodes and must hold behaviors. I added a special attribute called `Action` in my `PropertyType` enum class, which is enough to distinguish two kinds of nodes. Also, my decision is a binary tree.
+
+```c++
+class DTNode
+{
+public:
+    DTNode(PropertyType i_type, DecisionTree* i_tree);
+    virtual ~DTNode();
+
+    virtual BehaviorBase* MakeDecision() = 0;
+    void CleanUp();
+
+    //setters
+    void SetLeft(DTNode* i_node);
+    void SetRight(DTNode* i_node);
+    void Setbehavior(BehaviorBase* i_behavior);
+    void SetPropertyType(PropertyType i_type);
+
+protected:	
+    DTNode* m_LeftNode;
+    DTNode* m_RightNode;
+    DataMap* m_dataMap;//world state
+    PropertyType m_propertyType;
+
+    //only for leaf nodes
+    BehaviorBase* m_behavior;
+};
+```
+
+The decision tree holds a root node and recursively call `MakeDecision()` function. I passed a pointer to the global data map so that it can be used to initialize all child nodes.
+
+```c++
+class DecisionTree
+{
+public:
+	DecisionTree(DataMap* i_dataMap);
+
+	//setters
+	void SetRoot(DTNode* i_node);
+	BehaviorBase* MakeDecision();
+
+private:
+	DTNode* m_rootNode;
+	DataMap* m_dataMap;
+};
+```
+
+The decision tree instance I use in the game is like this:
 
 ![](/img/in-post/ai-write-up-03/4.jpg)
 
+The tree has three decision nodes and three behaviors. First, it will check the distance between AI character and player. If they are far away, the AI character will chase the player. The time mode checks the lasting time of the current state. If the time is too long it will switch to another state. Rotation node checks delta rotation between two characters. While two characters are adjacent to each other, the AI character will start to wander around because I don't want it always path following to the player. And here are the result of my decision tree.
+
 ![](/img/in-post/ai-write-up-03/1.gif)
-
-***Very Big Graph***
-
 
 #### Behavior Tree
 
