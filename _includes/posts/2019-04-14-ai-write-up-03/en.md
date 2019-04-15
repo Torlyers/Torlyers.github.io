@@ -159,27 +159,49 @@ Here is my behavior tree instance:
 
 ![](/img/in-post/ai-write-up-03/3.jpg)
 
+The root node is a selector. The sequencer child, as you can see, doesn't always return `SUCCESS`, so we could regard wandering as the default behavior. When two characters are far from each other, the AI character will go path following. Basically, the behavior is similar to that of the decision tree.
 
+Here is the result of behavior tree.
 
 ![](/img/in-post/ai-write-up-03/2.gif)
 
-
 #### Decision Tree Learning
 
-In decision tree learning, we use ID3 (Iterative Dichotomiser 3) algorithm to implemented the learning process. ID3 can generate a decision tree from a dataset.
+In decision tree learning, we use ID3 (Iterative Dichotomiser 3) algorithm to implement the learning process. ID3 can generate a decision tree from a dataset.
+
+The basic idea of ID3 is to find out which attribute effects the most in one round, and it should be the attribute in the decision node. Then divide the dataset into several sub-sets according to all values of this attribute. In each round, the best attribute will be regarded. Recursively repeat this process until there are no attributes left. we will get a decision tree.
+
+There are two concepts to evaluate the effect of an attribute. The first one is called entropy. Entropy evaluates the difference in data. If all the data are the same. The entropy will be zero. The second one is called gain. Gain evaluates the entropy in conditions that are values of an attribute. If the entropy declines a lot once we recalculate it in the conditions. We can consider that the attribute effects the most in this round. Here are some codes in the `MakeDecisionTree()` function. It shows the making process
+
+```c++
+{
+    DTNode* node = new DTNode(PropertyType::Action, i_tree);
+    uint8_t ActionId = UINT8_MAX;
+    if (CheckAllValuesAreSame(i_table, ActionId))
+    {
+    	node->SetBehaviorId(ActionId);
+    	return node;
+    }
+
+    //Find the most effective attribute according to gains
+    auto bestAttribute = FindBestAttribute(i_table);
+    node->SetPropertyType(bestAttribute);	
+
+    //update tables and attributes
+    //...
+
+    //recursively build the tree
+    node->SetLeft(MakeDecisionTree(i_tree, leftRemainTable, remainAttributes));
+    node->SetRight(MakeDecisionTree(i_tree, rightRemainTable, remainAttributes));
+
+    return node;
+}
+```
+
+In my implementation, I used 50 data records to train. I didn't save more because my decision executes once per 0.5-second rather than every frame. In the first part of the assignment, I used float values to make decisions like the following left chart. However, The learning only accepts discrete integers as inputs. So I have to transfer float conditions to bool conditions. The last column is the final behavior ID. 
 
 ![](/img/in-post/ai-write-up-03/5.JPG)
 
+I did't print the output tree but the behavior of the AI boid is pretty similar to that in the first gif. 
+
 ![](/img/in-post/ai-write-up-03/3.gif)
-
-
-
-
-
-
-
-
-
-## Appendix
-
-[Click to download the Game](/assets/AIAssignment.zip)
