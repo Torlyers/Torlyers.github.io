@@ -1,0 +1,24 @@
+---
+layout:       post
+title:        "[EAE 6900-026] Write-Up 09"
+subtitle:     "Color Space"
+date:         2019-04-15 12:00:00
+author:       "Zhitao"
+header-img:   "img/in-post/write-up-gra-09/bg.jpg"
+header-mask:  0.3
+catalog:      true
+multilingual: false
+
+---
+
+<!-- Chinese Version -->
+<!-- <div class="zh post-container">
+    {% capture about_zh %}{% include posts/2018-08-29-write-up-01/zh.md %}{% endcapture %}
+    {{ about_zh | markdownify }}
+</div> -->
+
+<!-- English Version -->
+<div class="en post-container">
+    {% capture about_en %}{% include posts/2019-04-15-write-up-09/en.md %}{% endcapture %}
+    {{ about_en | markdownify }}
+</div>

@@ -1,4 +1,4 @@
-> Filtering, Mipmaps, and Alpha Channel
+> Diffuse Lighting
 
 ## The game
 [Click to download the Game](/assets/GA08_Zhitao.zip)
