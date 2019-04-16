@@ -19,7 +19,7 @@ This time we added textures to the game. For build pipeline, I added `TextureBui
 
 ***UVs***
 
-To use texture, we need to have UV information in mesh. While exporting mesh file, we need to add UV position to every vertex. The coordinate in D3D is different with that in Maya, which is a left-hand coordinate. You can see the difference below. Respoinding changes should be made in mesh builder, andvertex structure.
+To use texture, we need to have UV information in mesh. While exporting mesh file, we need to add UV position to every vertex. The UV convention in D3D is different with that in Maya. You can see the difference below. Respoinding changes should be made in mesh builder, and vertex structure.
 
 ![](/img/in-post/write-up-gra-06/1.png)
 
