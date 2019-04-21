@@ -23,6 +23,7 @@ All sprites use the same mesh, a quad. the vextex can be hardcoded in the engine
 struct SpriteVertex
 {
     int8_t  position[2] = { 0, 0 }; //x, y
+    
     uint8_t uv[2] = { 0, 0 }; //u, v
 };
 ```
