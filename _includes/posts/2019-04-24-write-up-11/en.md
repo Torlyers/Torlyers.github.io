@@ -1,4 +1,4 @@
-> UI sprites
+> Specular Light
 
 ## The game
 [Click to download the Game](/assets/GA10_Zhitao.zip)
@@ -9,58 +9,39 @@ Use mouse to control direction.
 
 Press `W`, `A`, `S`, `D` to move the main camera. 
 
-## Sprite & Sprite Mesh
+## Specular Light
 
-Before we have `Gameobject` class. It has a mesh handle and a material handle. Submitting them to the render library then we can render a gameobject. In my perspective, sprite is a special gameobject. All sprites use a same mesh and same shaders. So I add a new mesh class that is just for sprites.
+In this assignment, we add a Blinn-Phong specular lighting. Before we use ambiemt and diffuse lighting, which are not enough. We need specular lighting to show the smoothness of materials.
 
-#### Sprite
-The sprite class is like gameobject class. I got rid of mesh handle. One thing I changed is that I used a static vector to save all sprites and provide a `CreateSprite` function. All sprites will be automatically added to the vector. In this way, user don't need to submit them manually.
+Specular lighting is based on the reflection of light. It depends on light direction, normal of surface, and view direction. In simple terms, when we look at the light reflection, we can see a specular.
 
-#### Mesh
-All sprites use the same mesh, a quad. the vextex can be hardcoded in the engine directly. One sprite vertex only has two elements.
+![](/img/in-post/write-up-gra-11/1.png)
 
+The formula to calculate specular in Blinn-Phong model is:
+
+$Color = s * (N⋅H)^α$
+
+In this formula, `s` is some some scalar or color value describing how reflective a material is. `α` is a exponent, which shows the smoothness of the material. `N` is the normal vector. `H` is the half vector of view vector and light vector.
+
+We can see from the formula that the specular light is related to the camera. While the normal vector and half vector is closer, the light will be stronger. This is because if these two vectors are the same, the camera will be exactly on the reflection vector of the light. And this is the strongest specular color.
+
+#### Result
+
+***Light Direction***
+![](/img/in-post/write-up-gra-11/1.gif)
+
+***Camera Direction***
+![](/img/in-post/write-up-gra-11/2.gif)
+
+***Exponent***
+![](/img/in-post/write-up-gra-11/1.JPG)
+
+## Point Light
+
+Point light is like a light bulb. It doesn't have a direction but a position, which is opposite to the direction light. And in the real world, a light bulb cannot light the whole world, so we need an attenuation value.
 ```c++
-struct SpriteVertex
-{
-    int8_t  position[2] = { 0, 0 }; //x, y
-
-    uint8_t uv[2] = { 0, 0 }; //u, v
-    
-};
+float attenuation = max(length(g_pointLight_position - positionWorld), 1);
 ```
 
-The values of positions and UVs will only be 0, 1 or -1 because There are only four vertices. In the input layout, the format of positions is `DXGI_FORMAT_R8G8_SNORM` while the format of UVs is `DXGI_FORMAT_R8G8_UNORM`. When pass vertex buffer to the vextex shader, both positions and UVs will be normalized.
+![](/img/in-post/write-up-gra-11/3.gif)
 
-While drawing, we don't need index buffer here. So we need to call `Draw()` rather than `DrawIndexed()`. The primitive should be set to `D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP`. Because all sprites use the same mesh, so we only need to set vertex buffer and primitive once.
-
-## Constant Buffer
-
-I didn't make a different constant buffer for sprite. but there's a little difference. I didn't save a transformation matrix in sprite class. While submitting, the user only needs to submit a material handle and the position to the render library. 
-
-we can use position vector to make a transformation matrix by putting it to the last column of the matrix. 
-```c++
-m_03( i_translation.x ), m_13( i_translation.y ), m_23( i_translation.z )
-```
-And in the vertex shader, we don't really need to use the whole matrix to transfrom. We can only take the translation from the matrix like this:
-```HLSL
-g_transform_localToWorld[3].xyz
-```
-This is the world position of the sprite. For every vertex, its world position equals to local position add the translation. 
-
-## Render Command
-
-Before we have two types of render commands: independent and dependent. Now we have the third one: sprites. So we use 2 bits to save types. Because sprites are always on the top layer, so we render them the last. Sprite's rendercommand contains effect index, material index, and drawcall index.
-
-## Effect & Shaders
-
-We don't need to enable depth testing, depth writing, and back or front culling. We do need to enable alpha blending.
-
-The UI sprites will always on the same positions of the screen no matter how you rotate the camera, which means you don't need transform vertex position to view space. We only need to transform it to the world space and do some scale as we like. In fragment shader, we just need to set diffuse texture and material color.
-
-## Result
-
-![](/img/in-post/write-up-gra-10/1.gif)
-
-I only set the sprite mesh's vertex buffer and primitive type once at the beginning of decoding and rendering sprite's render commands so that we can reduce some D3D api calls.
-
-![](/img/in-post/write-up-gra-10/1.JPG)
