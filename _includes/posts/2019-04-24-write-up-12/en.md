@@ -46,6 +46,10 @@ Then we can use the normal we get to do lighting calculation.
 
 ![](/img/in-post/write-up-gra-12/2.JPG)
 
-![](/img/in-post/write-up-gra-12/2.gif)
+![](/img/in-post/write-up-gra-12/6.gif)
+
+![](/img/in-post/write-up-gra-12/1.JPG)
+
+![](/img/in-post/write-up-gra-12/5.gif)
 
 ![](/img/in-post/write-up-gra-12/3.gif)
