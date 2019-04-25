@@ -2,7 +2,7 @@
 layout:       post
 title:        "[EAE 6900-026] Write-Up 14"
 subtitle:     "Cubemap"
-date:         2019-04-20 12:04:00
+date:         2019-04-24 12:04:00
 author:       "Zhitao"
 header-img:   "img/in-post/write-up-gra-14/bg.jpg"
 header-mask:  0.3
