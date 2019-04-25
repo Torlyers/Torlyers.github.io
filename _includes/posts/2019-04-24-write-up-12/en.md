@@ -9,58 +9,43 @@ Use mouse to control direction.
 
 Press `W`, `A`, `S`, `D` to move the main camera. 
 
-## Sprite & Sprite Mesh
+## Normal Map
 
-Before we have `Gameobject` class. It has a mesh handle and a material handle. Submitting them to the render library then we can render a gameobject. In my perspective, sprite is a special gameobject. All sprites use a same mesh and same shaders. So I add a new mesh class that is just for sprites.
+In a mesh, every vertex has its own normal vector. For low-poly model, if we want more details, we can use normal maps to let every fragment has different normal vector. In this way, even a flat face can have bump details. 
 
-#### Sprite
-The sprite class is like gameobject class. I got rid of mesh handle. One thing I changed is that I used a static vector to save all sprites and provide a `CreateSprite` function. All sprites will be automatically added to the vector. In this way, user don't need to submit them manually.
+Using normal map doesn't cost much because we just pass some normal vectors(normal map) to shader. The lighting model is still the same.
 
-#### Mesh
-All sprites use the same mesh, a quad. the vextex can be hardcoded in the engine directly. One sprite vertex only has two elements.
+#### Build Pipeline
+
+Building normal maps is similiar as building diffuse textures. But we want the normal textures are buildt with linear values because the "color" in normal maps is not actual color but normal vectors we want to use directly.
 
 ```c++
-struct SpriteVertex
-{
-    int8_t  position[2] = { 0, 0 }; //x, y
-
-    uint8_t uv[2] = { 0, 0 }; //u, v
-    
-};
+if (textureType == Graphics::TextureTypes::Normal)
+	{
+		sourceImage.OverrideFormat(RemoveSRGB(sourceImage.GetMetadata().format));
+	}
 ```
+To use normal maps in shader, we also need to add tangent and bitangent vectors to meshes. We can get them from Maya. In my vertex input layout, I added semantics `TANGENT` and `BITANGENT`.
 
-The values of positions and UVs will only be 0, 1 or -1 because There are only four vertices. In the input layout, the format of positions is `DXGI_FORMAT_R8G8_SNORM` while the format of UVs is `DXGI_FORMAT_R8G8_UNORM`. When pass vertex buffer to the vextex shader, both positions and UVs will be normalized.
+#### Calculate Normal
 
-While drawing, we don't need index buffer here. So we need to call `Draw()` rather than `DrawIndexed()`. The primitive should be set to `D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP`. Because all sprites use the same mesh, so we only need to set vertex buffer and primitive once.
+The calculation is in shaders. First, we sample the normal map and get a vector in the range[0, 1]. We need to interpolate it to the range[-1, 1]. This result is not the real normal vector of the fragment. 
 
-## Constant Buffer
+Second, we use tangent, bitangent, and normal to construct a `TBN` matrix, which is used to transfrom the normal offset to the final normal vector of the fragment.
 
-I didn't make a different constant buffer for sprite. but there's a little difference. I didn't save a transformation matrix in sprite class. While submitting, the user only needs to submit a material handle and the position to the render library. 
-
-we can use position vector to make a transformation matrix by putting it to the last column of the matrix. 
 ```c++
-m_03( i_translation.x ), m_13( i_translation.y ), m_23( i_translation.z )
+const float3x3 TBNMatrix = float3x3(
+		i_tangent_world.x, i_bitangent_world.x, i_normal_world.x,
+		i_tangent_world.y, i_bitangent_world.y, i_normal_world.y,
+		i_tangent_world.z, i_bitangent_world.z, i_normal_world.z );
 ```
-And in the vertex shader, we don't really need to use the whole matrix to transfrom. We can only take the translation from the matrix like this:
-```HLSL
-g_transform_localToWorld[3].xyz
-```
-This is the world position of the sprite. For every vertex, its world position equals to local position add the translation. 
 
-## Render Command
+Then we can use the normal we get to do lighting calculation.
 
-Before we have two types of render commands: independent and dependent. Now we have the third one: sprites. So we use 2 bits to save types. Because sprites are always on the top layer, so we render them the last. Sprite's rendercommand contains effect index, material index, and drawcall index.
+#### Results
 
-## Effect & Shaders
+![](/img/in-post/write-up-gra-12/2.JPG)
 
-We don't need to enable depth testing, depth writing, and back or front culling. We do need to enable alpha blending.
+![](/img/in-post/write-up-gra-12/2.gif)
 
-The UI sprites will always on the same positions of the screen no matter how you rotate the camera, which means you don't need transform vertex position to view space. We only need to transform it to the world space and do some scale as we like. In fragment shader, we just need to set diffuse texture and material color.
-
-## Result
-
-![](/img/in-post/write-up-gra-10/1.gif)
-
-I only set the sprite mesh's vertex buffer and primitive type once at the beginning of decoding and rendering sprite's render commands so that we can reduce some D3D api calls.
-
-![](/img/in-post/write-up-gra-10/1.JPG)
+![](/img/in-post/write-up-gra-12/3.gif)
