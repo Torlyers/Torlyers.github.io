@@ -26,25 +26,19 @@ In energy conservation theory, light can be reflected or refracted. But neither 
 
 The reflectance equation to calculate PBR lighting is like this: 
 
-$L_o(p,\omega_o) = \int\limits_{\Omega} f_r(p,\omega_i,\omega_o) L_i(p,\omega_i) n \cdot \omega_i  d\omega_i$
+![](/img/in-post/write-up-gra-13/1.JPG)
 
 This is a integral equation that is suitable for non-point light source. $L_o$ is the output light. $L_i$ is the input light. $f_r$ is the BRDF function. $n$ is the normal vector of the fragment. When light source is only a point. The function can be simplefied:
 
-$L_o = f(l,v) * L_i * cos(n,l)$
+![](/img/in-post/write-up-gra-13/2.JPG)
 
 The BRDF function we used is *Cook-Torrance* function. It has two parts: diffuse and specular.
 
-$f_{diffuse} = \frac{c}{\pi}$
-
-$f_{specular} = \frac{DFG}{4(\omega_o \cdot n)(\omega_i \cdot n)}$
+![](/img/in-post/write-up-gra-13/3.JPG)
 
 In diffuse function, $c$ is the color of original surface color. And in specular function, we have three different functions to calculate different parts of the surface reflection.
 
-$D = [(α + 2) / 2\pi] * (n⋅h)^α$
-
-$F = R_0 + [(1 - R_0) * (1 - (l⋅h))^5]$
-
-$G = |n\cdot v||n\cdot l|$
+![](/img/in-post/write-up-gra-13/4.JPG)
 
 Substitute these three functions into specular function, we can reduce some factors and get the final result to calculate specular light.
 
