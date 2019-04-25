@@ -35,7 +35,17 @@ While drawing, we don't need index buffer here. So we need to call `Draw()` rath
 
 ## Constant Buffer
 
-I didn't make a different constant buffer for sprite. but there's a little difference. I didn't save a transformation matrix in sprite class. While submitting, we can use position vector to make a transformation matrix easily and pass it to constant buffer.
+I didn't make a different constant buffer for sprite. but there's a little difference. I didn't save a transformation matrix in sprite class. While submitting, the user only needs to submit a material handle and the position to the render library. 
+
+we can use position vector to make a transformation matrix by putting it to the last column of the matrix. 
+```c++
+m_03( i_translation.x ), m_13( i_translation.y ), m_23( i_translation.z )
+```
+And in the vertex shader, we don't really need to use the whole matrix to transfrom. We can only take the translation from the matrix like this:
+```HLSL
+g_transform_localToWorld[3].xyz
+```
+This is the world position of the sprite. For every vertex, its world position equals to local position add the translation. 
 
 ## Render Command
 
